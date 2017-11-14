@@ -12,7 +12,7 @@ with open('./data/driving_log.csv') as csvfile:
 
 from sklearn.model_selection import train_test_split
 train_samples, validation_samples = train_test_split(samples, test_size=0.2)
-print(len(train_samples))
+
 import cv2
 import numpy as np
 import sklearn
@@ -31,8 +31,7 @@ def generator(samples, batch_size=78):
                 for i in range(3):
                     path = './data/IMG/'+batch_sample[i].split('/')[-1]
                     image = cv2.imread(path)
-                    if image is None:
-                        print(path)
+
                     images.extend([np.array(image), np.array(np.fliplr(image))])
 
                     if i == 0:
@@ -54,41 +53,10 @@ def generator(samples, batch_size=78):
             yield sklearn.utils.shuffle(X_train, y_train)
 
 
-def generator2(samples):
-    images = []
-    measurements = []
-    for batch_sample in samples:
-        # print(batch_sample)
-        for i in range(3):
-            path = './data/IMG/'+batch_sample[i].split('/')[-1]
-            image = cv2.imread(path)
-            if image is None:
-                print(path)
-            images.extend([np.array(image), np.array(np.fliplr(image))])
-
-            if i == 0:
-                correction = 0
-            elif i == 1:
-                correction = 0.2
-            else:
-                correction = -0.2
-            measurement = float(batch_sample[3]) + correction
-            measurements.extend([
-                np.float32(measurement),
-                np.float32(-measurement)
-            ])
-
-    # trim image to only see section with road
-    return np.array(images), np.array(measurements)
-
-    # return sklearn.utils.shuffle(X_train, y_train)
-
 
 # compile and train the model using the generator function
 train_generator = generator(train_samples, batch_size=32)
 validation_generator = generator(validation_samples, batch_size=32)
-
-ch, row, col = 3, 80, 320  # Trimmed image format
 
 from keras.models import Sequential
 from keras.layers.core import Dense, Activation, Flatten, Dropout
@@ -96,9 +64,11 @@ from keras.layers import Lambda, Convolution2D, Cropping2D, Dropout
 from keras.layers.pooling import MaxPooling2D
 
 model = Sequential()
+# Preprocess
 model.add(Lambda(lambda x: (x / 255.0) - 0.5, input_shape=(160, 320, 3)))
 model.add(Cropping2D(cropping=((60, 20), (0, 0))))
 
+# Nvidea model
 model.add(Convolution2D(24, 5, 5, subsample=(2, 2), activation='relu'))
 model.add(Convolution2D(36, 5, 5, subsample=(2, 2), activation='relu'))
 model.add(Convolution2D(48, 5, 5, subsample=(2, 2), activation='relu'))
@@ -115,8 +85,7 @@ model.add(Dropout(0.5))
 model.add(Dense(1))
 
 model.compile(loss='mse', optimizer='adam')
-# X_train, y_train = generator(samples)
-# model.fit(X_train, y_train, validation_split=0.2, shuffle=True, nb_epoch=3, verbose=1)
+
 history_object = model.fit_generator(
     train_generator,
     samples_per_epoch=len(train_samples)*6,

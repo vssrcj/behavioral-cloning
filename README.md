@@ -49,6 +49,16 @@ Thoughts on the *advanced* track
 ---
 I recored 3 laps around the advanced track (2 clockwize, 1 counterclockwize).  It achieved a final MSE loss of 0.01, but only managed to complete a quarter of a lap before plummeting off a cliff.
 
+Other thoughs
+---
+I included the throttle in the training process as well.  It was simple:
+* A y_train item consisted of a (steering, throttle) tuple, instead of just a steering value.
+* The final layer was *Dense(2)* instead of *Dense(1)*.
+* In **drive.py** the throttle was obtained from the prediction, and wasn't fixed.
+
+The reason why it isn't used in the submission of the project, is because it didn't add to the accuracy of the model,
+and the speed was typically too high for the steering to adjust in time.
+
 How to improve?
 ---
 The reason it failed on the more difficult track, is because of:
