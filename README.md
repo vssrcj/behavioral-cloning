@@ -8,20 +8,43 @@ Overview
 ---
 In this project, deep neural networks and convolutional neural networks are used with Keras to clone driving behavior.
 
-Modal Architecture and Training Strategy
+Modal architecture and training strategy
 ---
-nVidea's Convolutional Neural Network is used, as described below:
+LeNet's architecture was used, but it didn't perform optimally.
+
+nVidea's Convolutional Neural Network is used rather, as described (here)[https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars/]:
 <div>
    <img src="/nvidea-architecture.png" height="400" />
 </div>
 
 In addition to that architecture (that uses the Adam optimizer), 3 dropout (50%) layers are added between the *Dense* layers, to reduce overfitting.
 
-Image Capturing Process
+The summary is as follows:
+Layer|Output Shape|
+---|---
+Normalization|(160, 320, 3)
+Cropping (top 60, bottom 20)|(100, 320, 3)
+5x5 Convolution (24 filters)|
+5x5 Convolution (36 filters)|
+5x5 Convolution (48 filters)|
+3x3 Convolution (64 filters)|
+3x3 Convolution (64 filters)|
+Flatten|
+Linear Activation (100 Output)|
+50% Dropout|
+Linear Activation (50 Output)|
+50% Dropout|
+Linear Activation (10 Output)|
+50% Dropout|
+Linear Activation (1 Output)|
+
+The model uses an adam optimizer, so the learning rate is not tuned manually.
+
+Image capturing process
 ---
 The training images consists of driving three times around the track (twice counterclockwize, and once clockwize).
 
-Image Preprocessing
+Image preprocessing
 ---
 * The images were cropped, 60 pixels from the top, 20 from the bottom.
 * For each instance / frame, there are 3 images recorded, 1 from the center of the car, and 2 from the sides (which were corrected for the steering angles.)
