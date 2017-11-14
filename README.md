@@ -11,7 +11,9 @@ In this project, deep neural networks and convolutional neural networks are used
 Modal Architecture and Training Strategy
 ---
 nVidea's Convolutional Neural Network is used, as described below:
-<img src="/nvidea-architecture.png" height="300" />
+<div>
+   <img src="/nvidea-architecture.png" height="400" />
+</div>
 
 In addition to that architecture (that uses the Adam optimizer), 3 dropout (50%) layers are added between the *Dense* layers, to reduce overfitting.
 
@@ -32,12 +34,14 @@ The training process
 
 After 4 epochs using the model used above, an impressive 0.0075 validation MSE is achieved.
 Any more epochs causes overfitting, and the MSE rises.
-<img src="/graph.png" height="240" />
+<div>
+   <img src="/graph.png" height="240" />
+</div>
 
 The result
 ---
 The car follows the track safely around, never veer off track, or make unexpected moves.
-The result can be seen in *video.mp4*.  The car completed the course at a speed of 14.
+The result can be seen in <a href="/video.mp4">video.mp4</a>.  The car completed the course at a speed of 14.
 
 The car can even complete a track at a speed of 25, but its movements get erratic, and as a passanger, you won't feel safe.
 
