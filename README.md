@@ -32,6 +32,8 @@ The training process
 ---
 80% of the images were used for training, and 20% were used for validation.
 
+The training was performed on a GeForce GTX 1070, and it took about 300 seconds per epoch on ~3000 images.
+
 After 4 epochs using the model used above, an impressive 0.0075 validation MSE is achieved.
 Any more epochs causes overfitting, and the MSE rises.
 <div>
