@@ -24,7 +24,6 @@ The summary is as follows:
     <tr>
         <th>Layer</th><th>Output Shape</th>
     </tr>
-    <tr><td>---</td><td>---</td></tr>
     <tr><td>Normalization</td><td>(160, 320, 3)</td></tr>
     <tr><td>Cropping (top 60, bottom 20)</td><td>(100, 320, 3)</td></tr>
     <tr><td>5x5 Convolution (24 filters)</td><td>(38, 158, 24)</td></tr>
@@ -34,11 +33,11 @@ The summary is as follows:
     <tr><td>3x3 Convolution (64 filters)</td><td>(3, 33, 64)</td></tr>
     <tr><td>Flatten</td><td>(6336)</td></tr>
     <tr><td>Linear Activation (100 Output)</td><td>(100)</td></tr>
-    <tr><td>50% Dropout</td><td>|
+    <tr><td>50% Dropout</td><td></td></tr>
     <tr><td>Linear Activation (50 Output)</td><td>(50)</td></tr>
-    <tr><td>50% Dropout</td><td>|
+    <tr><td>50% Dropout</td><td></td></tr>
     <tr><td>Linear Activation (10 Output)</td><td>(10)</td></tr>
-    <tr><td>50% Dropout</td><td>|
+    <tr><td>50% Dropout</td><td></td></tr>
     <tr><td>Linear Activation (1 Output)</td><td>(1)</td></tr>
 </table>
 
