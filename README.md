@@ -20,23 +20,27 @@ nVidea's Convolutional Neural Network, which was designed for this exact problem
 In addition to that architecture (that uses the Adam optimizer), 3 dropout (50%) layers are added between the *Dense* layers, to reduce overfitting.
 
 The summary is as follows:
-| Layer | Output Shape |
-| --- | --- |
-| Normalization | (160, 320, 3) |
-| Cropping (top 60, bottom 20) | (100, 320, 3) |
-| 5x5 Convolution (24 filters) | (38, 158, 24) |
-| 5x5 Convolution (36 filters) | (17, 77, 36) |
-| 5x5 Convolution (48 filters) | (7, 37, 48) |
-| 3x3 Convolution (64 filters) | (5, 35, 64) |
-| 3x3 Convolution (64 filters) | (3, 33, 64) |
-| Flatten | (6336) |
-| Linear Activation (100 Output) | (100) |
-| 50% Dropout | |
-| Linear Activation (50 Output) | (50) |
-| 50% Dropout | |
-| Linear Activation (10 Output) | (10) |
-| 50% Dropout | |
-| Linear Activation (1 Output) | (1) |
+<table>
+    <tr>
+        <th>Layer</th><th>Output Shape</th>
+    </tr>
+    <tr><td>---</td><td>---</td></tr>
+    <tr><td>Normalization</td><td>(160, 320, 3)</td></tr>
+    <tr><td>Cropping (top 60, bottom 20)</td><td>(100, 320, 3)</td></tr>
+    <tr><td>5x5 Convolution (24 filters)</td><td>(38, 158, 24)</td></tr>
+    <tr><td>5x5 Convolution (36 filters)</td><td>(17, 77, 36)</td></tr>
+    <tr><td>5x5 Convolution (48 filters)</td><td>(7, 37, 48)</td></tr>
+    <tr><td>3x3 Convolution (64 filters)</td><td>(5, 35, 64)</td></tr>
+    <tr><td>3x3 Convolution (64 filters)</td><td>(3, 33, 64)</td></tr>
+    <tr><td>Flatten</td><td>(6336)</td></tr>
+    <tr><td>Linear Activation (100 Output)</td><td>(100)</td></tr>
+    <tr><td>50% Dropout</td><td>|
+    <tr><td>Linear Activation (50 Output)</td><td>(50)</td></tr>
+    <tr><td>50% Dropout</td><td>|
+    <tr><td>Linear Activation (10 Output)</td><td>(10)</td></tr>
+    <tr><td>50% Dropout</td><td>|
+    <tr><td>Linear Activation (1 Output)</td><td>(1)</td></tr>
+</table>
 
 The model uses an adam optimizer, so the learning rate is not tuned manually.
 
