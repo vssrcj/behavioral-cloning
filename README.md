@@ -20,23 +20,23 @@ nVidea's Convolutional Neural Network, which was designed for this exact problem
 In addition to that architecture (that uses the Adam optimizer), 3 dropout (50%) layers are added between the *Dense* layers, to reduce overfitting.
 
 The summary is as follows:
-Layer | Output Shape |
---- | --- |
-Normalization|(160, 320, 3)|
-Cropping (top 60, bottom 20)|(100, 320, 3)|
-5x5 Convolution (24 filters)|(38, 158, 24)|
-5x5 Convolution (36 filters)|(17, 77, 36)|
-5x5 Convolution (48 filters)|(7, 37, 48)|
-3x3 Convolution (64 filters)|(5, 35, 64)|
-3x3 Convolution (64 filters)|(3, 33, 64)|
-Flatten|(6336)|
-Linear Activation (100 Output)|(100)|
-50% Dropout||
-Linear Activation (50 Output)|(50)|
-50% Dropout||
-Linear Activation (10 Output)|(10)|
-50% Dropout||
-Linear Activation (1 Output)|(1)|
+| Layer | Output Shape |
+| --- | --- |
+| Normalization | (160, 320, 3) |
+| Cropping (top 60, bottom 20) | (100, 320, 3) |
+| 5x5 Convolution (24 filters) | (38, 158, 24) |
+| 5x5 Convolution (36 filters) | (17, 77, 36) |
+| 5x5 Convolution (48 filters) | (7, 37, 48) |
+| 3x3 Convolution (64 filters) | (5, 35, 64) |
+| 3x3 Convolution (64 filters) | (3, 33, 64) |
+| Flatten | (6336) |
+| Linear Activation (100 Output) | (100) |
+| 50% Dropout | |
+| Linear Activation (50 Output) | (50) |
+| 50% Dropout | |
+| Linear Activation (10 Output) | (10) |
+| 50% Dropout | |
+| Linear Activation (1 Output) | (1) |
 
 The model uses an adam optimizer, so the learning rate is not tuned manually.
 
