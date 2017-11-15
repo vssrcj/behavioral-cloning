@@ -55,11 +55,11 @@ The following is one of the training images (taken from the center):
 <div>
     <img src="/images/center.jpg" height="240">
 </div>
-There are left, and right images related to it.  The following are the result of the preprocess of the 3 images:
+The following are the 3 images per frame that are preprocessed:
 <div>
-    <img src="/images/left_aug.jpg" height="180">
-    <img src="/images/center_aug.jpg" height="180">
-    <img src="/images/right_aug.jpg" height="180">
+    <img src="/images/left_aug.jpg" height="120">
+    <img src="/images/center_aug.jpg" height="120">
+    <img src="/images/right_aug.jpg" height="120">
 </div>
 
 The training process
