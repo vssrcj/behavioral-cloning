@@ -69,23 +69,46 @@ model.add(Lambda(lambda x: (x / 255.0) - 0.5, input_shape=(160, 320, 3)))
 model.add(Cropping2D(cropping=((60, 20), (0, 0))))
 
 # Nvidea model
-model.add(Convolution2D(24, 5, 5, subsample=(2, 2), activation='relu'))
-model.add(Convolution2D(36, 5, 5, subsample=(2, 2), activation='relu'))
-model.add(Convolution2D(48, 5, 5, subsample=(2, 2), activation='relu'))
-model.add(Convolution2D(64, 3, 3, activation='relu'))
-model.add(Convolution2D(64, 3, 3, activation='relu'))
+x1 = Convolution2D(24, 5, 5, subsample=(2, 2), activation='relu')
+model.add(x1)
+print(x1.output_shape)
+
+x2 = Convolution2D(36, 5, 5, subsample=(2, 2), activation='relu')
+model.add(x2)
+print(x2.output_shape)
+
+x3 = Convolution2D(48, 5, 5, subsample=(2, 2), activation='relu')
+model.add(x3)
+print(x3.output_shape)
+
+x4 = Convolution2D(64, 3, 3, activation='relu')
+model.add(x4)
+print(x4.output_shape)
+
+x5 = Convolution2D(64, 3, 3, activation='relu')
+model.add(x5)
+print(x5.output_shape)
 # x = keras.layers.Input(x_train.shape[1:])
 # conv1 = keras.layers.Conv1D(16, 8, padding='same')(x)
 # print(conv1._keras_shape)
 
-model.add(Flatten())
-model.add(Dense(100))
+x6 = Flatten()
+model.add(x6)
+print(x6.output_shape)
+
+x7 = Dense(100)
+model.add(x7)
+print(x7.output_shape)
+# 2017_11_14_17_28_51_314
+
 model.add(Dropout(0.5))
 model.add(Dense(50))
 model.add(Dropout(0.5))
 model.add(Dense(10))
 model.add(Dropout(0.5))
 model.add(Dense(1))
+
+raise Exception('a')
 
 model.compile(loss='mse', optimizer='adam')
 

@@ -12,31 +12,31 @@ Modal architecture and training strategy
 ---
 LeNet's architecture was used, but it didn't perform optimally.
 
-nVidea's Convolutional Neural Network is used rather, as described (here)[https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars/]:
+nVidea's Convolutional Neural Network, which was designed for this exact problem, is used instead, as described [here](https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars/):
 <div>
-   <img src="/nvidea-architecture.png" height="400" />
+   <img src="/images/nvidea-architecture.png" height="400" />
 </div>
 
 In addition to that architecture (that uses the Adam optimizer), 3 dropout (50%) layers are added between the *Dense* layers, to reduce overfitting.
 
 The summary is as follows:
-Layer|Output Shape|
----|---
-Normalization|(160, 320, 3)
-Cropping (top 60, bottom 20)|(100, 320, 3)
-5x5 Convolution (24 filters)|
-5x5 Convolution (36 filters)|
-5x5 Convolution (48 filters)|
-3x3 Convolution (64 filters)|
-3x3 Convolution (64 filters)|
-Flatten|
-Linear Activation (100 Output)|
-50% Dropout|
-Linear Activation (50 Output)|
-50% Dropout|
-Linear Activation (10 Output)|
-50% Dropout|
-Linear Activation (1 Output)|
+Layer | Output Shape |
+--- | --- |
+Normalization|(160, 320, 3)|
+Cropping (top 60, bottom 20)|(100, 320, 3)|
+5x5 Convolution (24 filters)|(38, 158, 24)|
+5x5 Convolution (36 filters)|(17, 77, 36)|
+5x5 Convolution (48 filters)|(7, 37, 48)|
+3x3 Convolution (64 filters)|(5, 35, 64)|
+3x3 Convolution (64 filters)|(3, 33, 64)|
+Flatten|(6336)|
+Linear Activation (100 Output)|(100)|
+50% Dropout||
+Linear Activation (50 Output)|(50)|
+50% Dropout||
+Linear Activation (10 Output)|(10)|
+50% Dropout||
+Linear Activation (1 Output)|(1)|
 
 The model uses an adam optimizer, so the learning rate is not tuned manually.
 
@@ -51,6 +51,17 @@ Image preprocessing
 
 * For each of these 3 images, their horizontally flipped images were also used, for a total of 6 images per instance.
 
+The following is one of the training images (taken from the center):
+<div>
+    <img src="/images/center.jpg" height="240">
+</div>
+There are left, and right images related to it.  The following are the result of the preprocess of the 3 images:
+<div>
+    <img src="/images/left_aug.jpg" height="180">
+    <img src="/images/center_aug.jpg" height="180">
+    <img src="/images/right_aug.jpg" height="180">
+</div>
+
 The training process
 ---
 80% of the images were used for training, and 20% were used for validation.
@@ -60,7 +71,7 @@ The training was performed on a GeForce GTX 1070, and it took about 300 seconds 
 After 4 epochs using the model used above, an impressive 0.0075 validation MSE is achieved.
 Any more epochs causes overfitting, and the MSE rises.
 <div>
-   <img src="/graph.png" height="240" />
+   <img src="/images/graph.png" height="240" />
 </div>
 
 The result
